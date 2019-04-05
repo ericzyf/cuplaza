@@ -1,0 +1,47 @@
+<template>
+  <div style="border-left: 10px solid #00ff00;">
+    <v-toolbar dense color="indigo" class="white--text">
+      <v-icon large class="white--text logo">settings</v-icon>
+      <v-toolbar-title>ADMIN PANEL</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <div style="background-color: #eee">
+      <v-divider></v-divider>
+      <ItemGet />
+      <v-divider></v-divider>
+      <ItemPost />
+      <v-divider></v-divider>
+      <ItemDelete />
+      <v-divider></v-divider>
+    </div>
+  </div>
+</template>
+
+<script>
+import ItemGet from '@/components/Admin/ItemGet'
+import ItemPost from '@/components/Admin/ItemPost'
+import ItemDelete from '@/components/Admin/ItemDelete'
+
+export default {
+  components: {
+    ItemGet,
+    ItemPost,
+    ItemDelete
+  }
+}
+</script>
+
+<style scoped>
+.logo {
+  animation: logo-spin infinite 3s linear;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+
