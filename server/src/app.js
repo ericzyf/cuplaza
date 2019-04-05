@@ -19,7 +19,6 @@ async function loadItems() {
 app.get('/api/items', async (req, res) => {
   const data = await loadItems()
   const json = await data.find().toArray()
-  console.log(json)
   res.send(json)
 })
 
@@ -29,7 +28,6 @@ app.post('/api/items', async (req, res) => {
     ...req.body,
     timeStamp: new Date().toJSON()
   }
-  console.log(json)
   await data.insertOne(json)
   res.status(201).send()
 })
