@@ -19,9 +19,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#primary-footer span {
-  font-weight: 500;
-}
-</style>
