@@ -13,6 +13,12 @@
       <v-divider></v-divider>
       <ItemDelete />
       <v-divider></v-divider>
+      <UserGet />
+      <v-divider></v-divider>
+      <UserPost />
+      <v-divider></v-divider>
+      <UserDelete />
+      <v-divider></v-divider>
     </div>
   </div>
 </template>
@@ -21,12 +27,18 @@
 import ItemGet from '@/components/Admin/ItemGet'
 import ItemPost from '@/components/Admin/ItemPost'
 import ItemDelete from '@/components/Admin/ItemDelete'
+import UserGet from '@/components/Admin/UserGet'
+import UserPost from '@/components/Admin/UserPost'
+import UserDelete from '@/components/Admin/UserDelete'
 
 export default {
   components: {
     ItemGet,
     ItemPost,
-    ItemDelete
+    ItemDelete,
+    UserGet,
+    UserPost,
+    UserDelete
   }
 }
 </script>
