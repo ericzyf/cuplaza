@@ -122,12 +122,12 @@ export default {
     return {
       navDrawerOpen: false,
       navLinks: [
-        { icon: 'face', title: 'Beauty & Personal Care', route: '/'},
-        { icon: 'library_books', title: 'Books', route: '/'},
-        { icon: 'devices', title: 'Electronics', route: '/'},
-        { icon: 'local_mall', title: 'Fashion', route: '/'},
-        { icon: 'build', title: 'Services', route: '/'},
-        { icon: 'more_horiz', title: 'Others', route: '/'}
+        { icon: 'face', title: 'Beauty & Personal Care', route: '/category/0'},
+        { icon: 'library_books', title: 'Books', route: '/category/1'},
+        { icon: 'devices', title: 'Electronics', route: '/category/2'},
+        { icon: 'local_mall', title: 'Fashion', route: '/category/3'},
+        { icon: 'build', title: 'Services', route: '/category/4'},
+        { icon: 'more_horiz', title: 'Others', route: '/category/5'}
       ],
       searchOpen: false
     }
