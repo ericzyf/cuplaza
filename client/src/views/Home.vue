@@ -27,6 +27,7 @@ export default {
   async created() {
     try {
       this.items = await ItemService.getItem()
+      this.items.reverse()
     } catch(err) {
       this.error = err.message
     }
