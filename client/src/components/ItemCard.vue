@@ -1,14 +1,17 @@
 <template>
   <v-flex xs12 sm6 md4 lg3>
     <v-card style="padding: 10px">
-      <p class="headline item-title font-weight-medium">{{ item.title }}</p>
-      <v-img
-        class="black--text"
-        height="200px"
-        contain
-        :src="item.imgUrl"
-      >
-      </v-img>
+      <div class="no-link-decoration">
+        <router-link :to="routeString">
+          <p class="headline item-title font-weight-medium black--text">{{ item.title }}</p>
+          <v-img
+            class="black--text"
+            height="200px"
+            contain
+            :src="item.imgUrl"
+          ></v-img>
+        </router-link>
+      </div>
       <v-card-title>
         <div>
           <p>{{ item.timeStamp }}</p>
@@ -28,11 +31,20 @@
 
 <script>
 export default {
-  props: ['item']
+  props: ['item'],
+  computed: {
+    routeString: function() {
+      return `/item/${this.item._id}`
+    }
+  }
 }
 </script>
 
 <style scoped>
+.no-link-decoration a {
+  text-decoration: none;
+}
+
 .item-title {
   white-space: nowrap;
   overflow: hidden;
