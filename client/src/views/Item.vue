@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 40px 0 0">
+  <div class="mt-3">
     <template v-if="targetItem">
       <v-layout row wrap>
         <v-flex xs12 md6>
