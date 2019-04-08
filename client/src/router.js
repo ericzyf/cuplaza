@@ -5,6 +5,7 @@ import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
 import Admin from './views/Admin.vue'
 import Category from './views/Category.vue'
+import Item from './views/Item.vue'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       path: '/category/:id',
       name: 'category',
       component: Category
+    },
+    {
+      path: '/item/:id',
+      name: 'item',
+      component: Item
     }
   ]
 })
