@@ -1,6 +1,12 @@
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">Item Search</p>
+    <template v-if="keyword">
+      <p class="title pink--text">
+        <span class="black--text">base64url: </span>
+        {{ b64Keyword }}
+      </p>
+    </template>
     <v-text-field label="searchKeyword" v-model="keyword" outline clearable></v-text-field>
     <v-btn icon @click="adminSearchItem()">
       <v-icon color="primary">search</v-icon>
@@ -15,10 +21,12 @@
 <script>
 import SearchService from '@/api/SearchService'
 
+const base64url = require('base64url')
+
 export default {
   data: function() {
     return {
-      keyword: null,
+      keyword: '',
       items: null,
       error: null
     }
@@ -32,9 +40,14 @@ export default {
       }
     },
     clear: function() {
-      this.keyword = null
+      this.keyword = ''
       this.items = null
       this.error = null
+    }
+  },
+  computed: {
+    b64Keyword: function() {
+      return base64url(this.keyword)
     }
   }
 }
