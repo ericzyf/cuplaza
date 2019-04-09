@@ -1,0 +1,41 @@
+<template>
+  <div style="padding: 20px">
+    <p class="headline black--text">Item Search</p>
+    <v-text-field label="searchKeyword" v-model="keyword" outline clearable></v-text-field>
+    <v-btn icon @click="adminSearchItem()">
+      <v-icon color="primary">search</v-icon>
+    </v-btn>
+    <v-btn color="indigo" class="white--text" @click="clear()">CLEAR</v-btn>
+    <template v-if="items">
+      <p v-for="item in items" :key="item._id" class="subheading">{{ item }}</p>
+    </template>
+  </div>
+</template>
+
+<script>
+import SearchService from '@/api/SearchService'
+
+export default {
+  data: function() {
+    return {
+      keyword: null,
+      items: null,
+      error: null
+    }
+  },
+  methods: {
+    async adminSearchItem() {
+      try {
+        this.items = await SearchService.searchItem(this.keyword)
+      } catch(err) {
+        this.error = err.message
+      }
+    },
+    clear: function() {
+      this.keyword = null
+      this.items = null
+      this.error = null
+    }
+  }
+}
+</script>

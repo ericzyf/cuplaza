@@ -6,6 +6,7 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <div style="background-color: #eee">
+      <ItemSearch />
       <v-divider></v-divider>
       <ItemGet />
       <v-divider></v-divider>
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+import ItemSearch from '@/components/Admin/ItemSearch'
 import ItemGet from '@/components/Admin/ItemGet'
 import ItemPost from '@/components/Admin/ItemPost'
 import ItemDelete from '@/components/Admin/ItemDelete'
@@ -33,6 +35,7 @@ import UserDelete from '@/components/Admin/UserDelete'
 
 export default {
   components: {
+    ItemSearch,
     ItemGet,
     ItemPost,
     ItemDelete,
@@ -56,4 +59,3 @@ export default {
   }
 }
 </style>
-
