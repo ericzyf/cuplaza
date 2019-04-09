@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-sm>
+  <v-container fluid grid-list-lg>
     <p class="headline blue-grey--text font-weight-medium">
       {{ categoryName($route.params.id) }}
     </p>

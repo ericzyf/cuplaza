@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="results.length > 0">
-      <v-container fluid grid-list-sm>
+      <v-container fluid grid-list-lg>
         <p class="headline blue-grey--text font-weight-medium">
           <span>Search results for </span>
           {{ "'" + decodeKeyword($route.params.b64) + "'" }}
