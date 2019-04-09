@@ -1,35 +1,31 @@
 <template>
-  <div>
+  <v-container fluid grid-list-lg>
     <template v-if="results.length > 0">
-      <v-container fluid grid-list-lg>
-        <p class="headline blue-grey--text font-weight-medium">
-          <span>Search results for </span>
-          {{ "'" + decodeKeyword($route.params.b64) + "'" }}
-        </p>
-        <p class="subheading orange--text font-weight-medium">
-          Found {{ this.results.length }} item(s)
-        </p>
-        <v-layout row wrap>
-          <ItemCard
-            v-for="item in results"
-            :key="item._id"
-            :item="item"
-          />
-        </v-layout>
-      </v-container>
+      <p class="headline blue-grey--text font-weight-medium">
+        <span>Search results for </span>
+        {{ "'" + decodeKeyword($route.params.b64) + "'" }}
+      </p>
+      <p class="subheading orange--text font-weight-medium">
+        Found {{ this.results.length }} item(s)
+      </p>
+      <v-layout row wrap>
+        <ItemCard
+          v-for="item in results"
+          :key="item._id"
+          :item="item"
+        />
+      </v-layout>
     </template>
     <template v-else>
-      <v-container fluid>
-        <p class="headline blue-grey--text font-weight-medium">
-          <span>Search results for </span>
-          {{ "'" + decodeKeyword($route.params.b64) + "'" }}
-        </p>
-        <p class="subheading pink--text font-weight-medium">
-          No matching items
-        </p>
-      </v-container>
+      <p class="headline blue-grey--text font-weight-medium">
+        <span>Search results for </span>
+        {{ "'" + decodeKeyword($route.params.b64) + "'" }}
+      </p>
+      <p class="subheading pink--text font-weight-medium">
+        No matching items
+      </p>
     </template>
-  </div>
+  </v-container>
 </template>
 
 <script>
