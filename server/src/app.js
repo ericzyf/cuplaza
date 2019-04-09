@@ -1,3 +1,4 @@
+const base64url = require('base64url')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const express = require('express')
@@ -77,6 +78,24 @@ app.delete('/api/users/:id', async (req, res) => {
   res.status(200).send()
 })
 //// End of API part
+
+//// Search System
+app.get('/api/search/:b64', async (req, res) => {
+  const data = loadCollection('items')
+  const json = await data.find().toArray()
+  // decode base64, remove all spaces in the string, and convert all char to lowercase
+  const searchKeyword = base64url.decode(req.params.b64).replace(/\s/g, '').toLowerCase()
+  let filteredJson = []
+  for (let i = 0; i !== json.length; ++i) {
+    let itemTitle = json[i].title.replace(/\s/g, '').toLowerCase()
+    // if the search keyword is a substring of the item title
+    if (itemTitle.indexOf(searchKeyword) !== -1) {
+      filteredJson.push(json[i])
+    }
+  }
+  res.send(filteredJson)
+})
+////
 
 app.listen(8081, () => {
     console.log('app listening on port 8081...')
