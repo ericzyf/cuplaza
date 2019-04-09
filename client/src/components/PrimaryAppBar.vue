@@ -29,8 +29,8 @@
       <v-btn icon>
         <v-icon>account_circle</v-icon>
       </v-btn>
-      <v-btn color="success" to="/login">Login</v-btn>
-      <v-btn color="primary" to="/signup">Sign Up</v-btn>
+      <v-btn outline color="success" to="/login">Login</v-btn>
+      <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
     </v-toolbar>
 
 
@@ -50,21 +50,18 @@
         <v-btn icon @click="searchHandler()">
           <v-icon>search</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>account_circle</v-icon>
-        </v-btn>
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
-              <v-icon>more_vert</v-icon>
+              <v-icon>account_circle</v-icon>
             </v-btn>
           </template>
           <v-list>
             <v-list-tile>
-              <v-btn color="success" to="/login">Login</v-btn>
+              <v-btn outline color="success" to="/login">Login</v-btn>
             </v-list-tile>
             <v-list-tile>
-              <v-btn color="primary" to="/signup">Sign Up</v-btn>
+              <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
             </v-list-tile>
           </v-list>
         </v-menu>
