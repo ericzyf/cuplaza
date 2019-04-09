@@ -34,7 +34,7 @@ export default {
   methods: {
     async adminSearchItem() {
       try {
-        this.items = await SearchService.searchItem(this.keyword)
+        this.items = await SearchService.searchItem(this.b64Keyword)
       } catch(err) {
         this.error = err.message
       }

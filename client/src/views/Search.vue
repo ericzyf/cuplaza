@@ -51,7 +51,7 @@ export default {
   },
   async created() {
     try {
-      this.results = await SearchService.searchItem(this.decodeKeyword(this.$route.params.b64))
+      this.results = await SearchService.searchItem(this.$route.params.b64)
       this.results.reverse()
     } catch(err) {
       this.error = err.message
