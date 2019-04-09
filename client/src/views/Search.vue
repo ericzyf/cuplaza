@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p class="headline blue-grey--text font-weight-medium">
-      <span>Search results for </span>
-      {{ "'" + decodeKeyword($route.params.b64) + "'" }}
-    </p>
     <template v-if="results.length > 0">
       <v-container fluid grid-list-sm>
+        <p class="headline blue-grey--text font-weight-medium">
+          <span>Search results for </span>
+          {{ "'" + decodeKeyword($route.params.b64) + "'" }}
+        </p>
         <p class="subheading orange--text font-weight-medium">
           Found {{ this.results.length }} item(s)
         </p>
@@ -20,6 +20,10 @@
     </template>
     <template v-else>
       <v-container fluid>
+        <p class="headline blue-grey--text font-weight-medium">
+          <span>Search results for </span>
+          {{ "'" + decodeKeyword($route.params.b64) + "'" }}
+        </p>
         <p class="subheading pink--text font-weight-medium">
           No matching items
         </p>
