@@ -15,8 +15,9 @@
         <v-text-field
           placeholder="Search"
           clearable
+          v-model="searchKeyword"
         ></v-text-field>
-        <v-btn icon @click="searchOpen = !searchOpen">
+        <v-btn icon @click="searchHandler()">
           <v-icon color="primary">search</v-icon>
         </v-btn>
       </template>
@@ -46,7 +47,7 @@
           </router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon @click="searchOpen = !searchOpen">
+        <v-btn icon @click="searchHandler()">
           <v-icon>search</v-icon>
         </v-btn>
         <v-btn icon>
@@ -71,15 +72,16 @@
 
       <!-- render when search bar is open -->
       <template v-else>
-        <v-btn icon @click="searchOpen = !searchOpen">
+        <v-btn icon @click="searchOpen = false">
           <v-icon>keyboard_arrow_left</v-icon>
         </v-btn>
         <v-text-field
           placeholder="Search"
           single-line
           clearable
+          v-model="searchKeyword"
         ></v-text-field>
-        <v-btn icon>
+        <v-btn icon @click="searchHandler()">
           <v-icon color="primary">search</v-icon>
         </v-btn>
       </template>
@@ -117,6 +119,8 @@
 </template>
 
 <script>
+const base64url = require('base64url')
+
 export default {
   data: function() {
     return {
@@ -129,7 +133,26 @@ export default {
         { icon: 'build', title: 'Services', route: '/category/4'},
         { icon: 'more_horiz', title: 'Others', route: '/category/5'}
       ],
-      searchOpen: false
+      searchOpen: false,
+      searchKeyword: ''
+    }
+  },
+  computed: {
+    b64Keyword: function() {
+      return base64url(this.searchKeyword)
+    }
+  },
+  methods: {
+    searchHandler: function() {
+      if (!this.searchOpen) {
+        this.searchOpen = true
+      } else if (this.searchKeyword !== null && this.searchKeyword.length > 0) {
+        this.$router.push({ path: `/search/${this.b64Keyword}` })
+        this.searchKeyword = ''
+        this.searchOpen = false
+      } else {
+        this.searchOpen = false
+      }
     }
   }
 }

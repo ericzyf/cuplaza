@@ -56,6 +56,17 @@ export default {
     } catch(err) {
       this.error = err.message
     }
+  },
+  watch: {
+    async $route (to) {
+      // update search results
+      try {
+        this.results = await SearchService.searchItem(to.params.b64)
+        this.results.reverse()
+      } catch(err) {
+        this.error = err.message
+      }
+    }
   }
 }
 </script>
