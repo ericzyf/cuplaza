@@ -5,7 +5,8 @@
       <v-toolbar-side-icon @click="navDrawerOpen = !navDrawerOpen"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase primary-logo">
         <router-link to="/">
-          <span class="black--text">CU</span>
+          <span class="deep-purple--text font-weight-bold">C</span>
+          <span class="amber--text font-weight-bold">U</span>
           <span class="font-weight-light black--text">Plaza</span>
         </router-link>
       </v-toolbar-title>
@@ -42,7 +43,8 @@
         <v-toolbar-side-icon @click="navDrawerOpen = !navDrawerOpen"></v-toolbar-side-icon>
         <v-toolbar-title class="headline text-uppercase primary-logo">
           <router-link to="/">
-            <span class="black--text">CU</span>
+            <span class="deep-purple--text font-weight-bold">C</span>
+            <span class="amber--text font-weight-bold">U</span>
             <span class="font-weight-light black--text">Plaza</span>
           </router-link>
         </v-toolbar-title>
