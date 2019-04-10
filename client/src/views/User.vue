@@ -2,18 +2,7 @@
   <v-container fluid>
     <template v-if="targetUser">
       <v-card max-width="1000px" style="margin: 0 auto; border-radius: 15px; padding: 15px">
-        <v-layout row wrap align-center>
-          <v-flex xs1 style="padding-bottom: 10px">
-            <v-avatar color="indigo">
-              <span class="white--text headline">
-                {{ $store.state.curtUser_userName.toUpperCase()[0] }}
-              </span>
-            </v-avatar>
-          </v-flex>
-          <v-flex xs11>
-            <span class="headline black--text">Account Details</span>
-          </v-flex>
-        </v-layout>
+        <span class="headline black--text">Account Details</span>
         <v-divider></v-divider>
         <v-layout column>
           <v-flex>
