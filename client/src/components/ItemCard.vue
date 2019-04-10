@@ -12,10 +12,32 @@
           ></v-img>
         </router-link>
       </div>
-      <v-card-title>
-        <div>
-          <p>{{ item.timeStamp }}</p>
-        </div>
+      <v-card-title class="pt-5">
+        <v-layout row align-center>
+          <v-flex xs2>
+            <v-avatar color="indigo" size="36">
+              <span class="white--text headline">
+                {{ seller.userName.toUpperCase()[0] }}
+              </span>
+            </v-avatar>
+          </v-flex>
+          <v-flex xs10>
+            <v-layout column>
+              <v-flex>
+                <span>
+                  Seller:&nbsp;
+                  <span class="font-weight-medium">{{ seller.userName }}</span>
+                </span>
+              </v-flex>
+              <v-flex>
+                <span>
+                  Posted on:&nbsp;
+                  <span class="font-weight-medium">{{ item.timeStamp }}</span>
+                </span>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
       </v-card-title>
       <v-card-actions>
         <p class="orange--text title">{{ item.price }} {{ item.currency }}</p>
@@ -30,11 +52,32 @@
 </template>
 
 <script>
+import UserService from '@/api/UserService'
+
 export default {
   props: ['item'],
+  data: function() {
+    return {
+      users: null,
+      error: '',
+      seller: null
+    }
+  },
   computed: {
     routeString: function() {
       return `/item/${this.item._id}`
+    }
+  },
+  async created() {
+    try {
+      this.users = await UserService.getUser()
+      for (let i = 0; i !== this.users.length; ++i) {
+        if (this.users[i]._id === this.item.uid) {
+          this.seller = this.users[i]
+        }
+      }
+    } catch(err) {
+      this.error = err.message
     }
   }
 }
