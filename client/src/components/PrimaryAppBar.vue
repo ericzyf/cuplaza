@@ -49,7 +49,7 @@
               <span class="font-weight-black">{{ $store.state.curtUser_userName }}</span>
             </v-list-tile>
             <v-divider></v-divider>
-            <v-list-tile to="/" color="indigo" active-class="no-deco">
+            <v-list-tile :to="`/user/${$store.state.curtUser_uid}`" color="indigo" active-class="no-deco">
               <v-icon color="indigo" class="pr-2">info</v-icon>
               Account Details
             </v-list-tile>
@@ -115,7 +115,7 @@
                 <span class="font-weight-black">{{ $store.state.curtUser_userName }}</span>
               </v-list-tile>
               <v-divider></v-divider>
-              <v-list-tile to="/" color="indigo" active-class="no-deco">
+              <v-list-tile :to="`/user/${$store.state.curtUser_uid}`" color="indigo" active-class="no-deco">
                 <v-icon color="indigo" class="pr-2">info</v-icon>
                 Account Details
               </v-list-tile>
