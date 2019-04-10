@@ -84,21 +84,51 @@
         <v-btn icon @click="searchHandler()">
           <v-icon>search</v-icon>
         </v-btn>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon>account_circle</v-icon>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-tile>
-              <v-btn outline color="success" to="/login">Login</v-btn>
-            </v-list-tile>
-            <v-list-tile>
-              <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
+
+        <!-- user state -->
+        <template v-if="!loginState">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon>account_circle</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-tile>
+                <v-btn outline color="success" to="/login">Login</v-btn>
+              </v-list-tile>
+              <v-list-tile>
+                <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </template>
+        <template v-else>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn fab small color="indigo" v-on="on">
+                <span class="white--text headline">
+                  {{ $store.state.curtUser_userName.toUpperCase()[0] }}
+                </span>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-tile>
+                <span>User:&nbsp;</span>
+                <span class="font-weight-black">{{ $store.state.curtUser_userName }}</span>
+              </v-list-tile>
+              <v-divider></v-divider>
+              <v-list-tile to="/" color="indigo" active-class="no-deco">
+                <v-icon color="indigo" class="pr-2">info</v-icon>
+                Account Details
+              </v-list-tile>
+              <v-list-tile color="red" active-class="no-deco" @click="logout()">
+                <v-icon color="red" class="pr-2">power_settings_new</v-icon>
+                Log Out
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </template>
       </template>
 
       <!-- render when search bar is open -->
