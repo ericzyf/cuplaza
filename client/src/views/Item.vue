@@ -14,7 +14,7 @@
           <v-flex xs12 md6>
             <div style="max-width: 90%; height: 100%; margin: 0 auto;">
               <v-layout column justify-space-between fill-height>
-                <v-flex shrink>
+                <v-flex shrink class="no-deco">
                   <p class="headline" style="word-wrap: break-word">{{ targetItem.title }}</p>
                   <p class="blue-grey--text subheading">{{ targetItem.timeStamp }}</p>
                   <router-link :to="`/category/${targetItem.category}`">
@@ -142,3 +142,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.no-deco a {
+  text-decoration: none;
+}
+</style>
