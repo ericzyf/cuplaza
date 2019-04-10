@@ -53,6 +53,11 @@
               <v-icon color="indigo" class="pr-2">info</v-icon>
               Account Details
             </v-list-tile>
+            <v-list-tile :to="`/postitem/${$store.state.curtUser_uid}`" color="green" active-class="no-deco">
+              <v-icon color="green" class="pr-2">call_made</v-icon>
+              Post Item
+            </v-list-tile>
+            <v-divider></v-divider>
             <v-list-tile color="red" active-class="no-deco" @click="logout()">
               <v-icon color="red" class="pr-2">power_settings_new</v-icon>
               Log Out
@@ -119,6 +124,11 @@
                 <v-icon color="indigo" class="pr-2">info</v-icon>
                 Account Details
               </v-list-tile>
+              <v-list-tile :to="`/postitem/${$store.state.curtUser_uid}`" color="green" active-class="no-deco">
+                <v-icon color="green" class="pr-2">call_made</v-icon>
+                Post Item
+              </v-list-tile>
+              <v-divider></v-divider>
               <v-list-tile color="red" active-class="no-deco" @click="logout()">
                 <v-icon color="red" class="pr-2">power_settings_new</v-icon>
                 Log Out
