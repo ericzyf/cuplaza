@@ -11,6 +11,7 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
       <!-- search bar -->
       <template v-if="searchOpen">
         <v-text-field
@@ -27,13 +28,44 @@
           <v-icon>search</v-icon>
         </v-btn>
       </template>
-      <v-btn icon>
-        <v-icon>account_circle</v-icon>
-      </v-btn>
-      <v-btn outline color="success" to="/login">Login</v-btn>
-      <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
+
+      <!-- user state -->
+      <template v-if="!loginState">
+        <v-btn icon>
+          <v-icon>account_circle</v-icon>
+        </v-btn>
+        <v-btn outline color="success" to="/login">Login</v-btn>
+        <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
+      </template>
+      <template v-else>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn fab small color="indigo" v-on="on">
+              <span class="white--text headline">
+                {{ $store.state.curtUser_userName.toUpperCase()[0] }}
+              </span>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-tile>
+              <span>User:&nbsp;</span>
+              <span class="font-weight-black">{{ $store.state.curtUser_userName }}</span>
+            </v-list-tile>
+            <v-divider></v-divider>
+            <v-list-tile to="/" color="indigo" active-class="no-deco">
+              <v-icon color="indigo" class="pr-2">info</v-icon>
+              Account Details
+            </v-list-tile>
+            <v-list-tile color="red" active-class="no-deco" @click="logout()">
+              <v-icon color="red" class="pr-2">power_settings_new</v-icon>
+              Log Out
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </template>
     </v-toolbar>
 
+    <!-- ################################ -->
 
     <!-- mobile version -->
     <v-toolbar app class="hidden-md-and-up">
@@ -87,6 +119,7 @@
 
     </v-toolbar>
 
+    <!-- ################################ -->
 
     <v-navigation-drawer v-model="navDrawerOpen" app temporary>
       <v-toolbar flat>
@@ -139,6 +172,10 @@ export default {
   computed: {
     b64Keyword: function() {
       return base64url(this.searchKeyword)
+    },
+    loginState: function() {
+      // return true when user has logged in
+      return this.$store.state.curtUser_uid !== null
     }
   },
   methods: {
@@ -152,6 +189,9 @@ export default {
       } else {
         this.searchOpen = false
       }
+    },
+    logout: function() {
+      this.$store.commit('logout')
     }
   }
 }
@@ -163,6 +203,10 @@ export default {
 }
 
 .primary-logo a {
+  text-decoration: none;
+}
+
+.no-deco a {
   text-decoration: none;
 }
 </style>

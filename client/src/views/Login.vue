@@ -51,7 +51,8 @@ export default {
   methods: {
     loginHandler: function() {
       let found = false
-      for (let i = 0; i !== this.users.length; ++i) {
+      let i = 0
+      for (; i !== this.users.length; ++i) {
         if (this.users[i].email === this.email &&
             this.users[i].password === this.password) {
           found = true
@@ -59,6 +60,10 @@ export default {
         }
       }
       alert(found ? 'Login successfully.' : 'Email or password error.')
+      if (found) {
+        this.$store.commit('login', this.users[i])
+        this.$router.push({ path: '/' })
+      }
     }
   },
   async created() {
