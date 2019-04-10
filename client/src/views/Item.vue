@@ -1,49 +1,101 @@
 <template>
   <v-container fluid>
     <template v-if="targetItem">
-      <v-layout row wrap>
-        <v-flex xs12 md6>
-          <v-carousel style="max-width: 90%; margin: 0 auto;">
-            <v-carousel-item
-              contain
-              :src="targetItem.imgUrl"
-            ></v-carousel-item>
-          </v-carousel>
-        </v-flex>
-        <v-flex xs12 md6>
-          <div style="max-width: 90%; height: 100%; margin: 0 auto;">
-            <v-layout column justify-space-between fill-height>
-              <v-flex shrink>
-                <p class="headline" style="word-wrap: break-word">{{ targetItem.title }}</p>
-                <p class="blue-grey--text subheading">{{ targetItem.timeStamp }}</p>
-                <p class="blue-grey--text subheading">{{ categoryName(targetItem.category) }}</p>
-              </v-flex>
-
-              <!-- align bottom -->
-              <v-flex shrink>
-                <p class="orange--text headline">{{ targetItem.price }} {{ targetItem.currency }}</p>
-                <v-btn color="deep-orange white--text" large>
-                  <v-icon left>shopping_cart</v-icon>
-                  Order
-                </v-btn>
-              </v-flex>
-            </v-layout>
-          </div>
-        </v-flex>
-      </v-layout>
+      <v-card class="pa-2">
+        <v-layout row wrap>
+          <v-flex xs12 md6>
+            <v-carousel style="max-width: 90%; margin: 0 auto;">
+              <v-carousel-item
+                contain
+                :src="targetItem.imgUrl"
+              ></v-carousel-item>
+            </v-carousel>
+          </v-flex>
+          <v-flex xs12 md6>
+            <div style="max-width: 90%; height: 100%; margin: 0 auto;">
+              <v-layout column justify-space-between fill-height>
+                <v-flex shrink>
+                  <p class="headline" style="word-wrap: break-word">{{ targetItem.title }}</p>
+                  <p class="blue-grey--text subheading">{{ targetItem.timeStamp }}</p>
+                  <router-link :to="`/category/${targetItem.category}`">
+                    <span class="font-italic pink--text">
+                      {{ categoryName(targetItem.category) }}
+                    </span>
+                  </router-link>
+                </v-flex>
+                <v-flex shrink>
+                  <v-layout column>
+                    <v-flex>
+                      <v-layout row nowrap class="pt-2">
+                        <v-flex xs3>
+                          <span class="grey--text subheading">Seller Name</span>
+                        </v-flex>
+                        <v-flex xs9>
+                          <p class="headline breakword font-weight-light">{{ seller.userName }}</p>
+                        </v-flex>
+                      </v-layout>
+                    </v-flex>
+                    <v-divider></v-divider>
+                    <v-flex>
+                      <v-layout row nowrap class="pt-2">
+                        <v-flex xs3>
+                          <span class="grey--text subheading">Email Address</span>
+                        </v-flex>
+                        <v-flex xs9>
+                          <p class="headline breakword font-weight-light">{{ seller.email }}</p>
+                        </v-flex>
+                      </v-layout>
+                    </v-flex>
+                    <v-divider></v-divider>
+                    <v-flex>
+                      <v-layout row nowrap class="pt-2">
+                        <v-flex xs3>
+                          <span class="grey--text subheading">Phone Number</span>
+                        </v-flex>
+                        <v-flex xs9>
+                          <p class="headline breakword font-weight-light">{{ seller.phone }}</p>
+                        </v-flex>
+                      </v-layout>
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+                <!-- align bottom -->
+                <v-flex shrink>
+                  <v-layout row nowrap justify-space-around>
+                    <v-flex shrink>
+                      <span class="orange--text headline">
+                        {{ targetItem.price }}&nbsp;{{ targetItem.currency }}
+                      </span>
+                    </v-flex>
+                    <v-flex shrink>
+                      <v-btn color="deep-orange white--text" large>
+                        <v-icon left>shopping_cart</v-icon>
+                        Order
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-card>
     </template>
   </v-container>
 </template>
 
 <script>
 import ItemService from '@/api/ItemService'
+import UserService from '@/api/UserService'
 
 export default {
   data: function() {
     return {
       items: null,
       targetItem: null,
-      error: ''
+      error: '',
+      users: null,
+      seller: null
     }
   },
   methods: {
@@ -61,10 +113,19 @@ export default {
   },
   async created() {
     try {
+      // get item info
       this.items = await ItemService.getItem()
       for (let i = 0; i !== this.items.length; ++i) {
         if (this.items[i]._id === this.$route.params.id) {
           this.targetItem = this.items[i]
+          break
+        }
+      }
+      // get seller info
+      this.users = await UserService.getUser()
+      for (let i = 0; i !== this.users.length; ++i) {
+        if (this.users[i]._id === this.targetItem.uid) {
+          this.seller = this.users[i]
           break
         }
       }
