@@ -3,10 +3,10 @@
     <v-card class="pa-3">
       <div class="no-link-decoration">
         <router-link :to="routeString">
-          <p class="headline item-title font-weight-medium black--text">{{ item.title }}</p>
+          <p class="title item-title black--text">{{ item.title }}</p>
           <v-img
             class="black--text"
-            height="200px"
+            height="120px"
             contain
             :src="item.imgUrl"
           ></v-img>
