@@ -61,7 +61,7 @@
                 </v-flex>
                 <!-- align bottom -->
                 <v-flex shrink>
-                  <v-layout row nowrap justify-space-around>
+                  <v-layout row nowrap justify-space-around align-center>
                     <v-flex shrink>
                       <span class="orange--text headline">
                         {{ targetItem.price }}&nbsp;{{ targetItem.currency }}
@@ -79,6 +79,13 @@
             </div>
           </v-flex>
         </v-layout>
+        <v-divider></v-divider>
+        <div class="pt-3" style="width: 90%; margin: 0 auto">
+          <div class="headline font-weight-bold">Item Description</div>
+          <div class="pa-4 font-weight-light" style="font-size: 1.2rem">
+            {{ targetItem.description }}
+          </div>
+        </div>
       </v-card>
     </template>
   </v-container>
