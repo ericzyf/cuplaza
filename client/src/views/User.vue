@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <template v-if="targetUser">
+    <template v-if="$route.params.uid === $store.state.curtUser_uid">
       <v-card max-width="1000px" style="margin: 0 auto; border-radius: 15px; padding: 15px">
         <span class="headline black--text">Account Details</span>
         <v-divider></v-divider>
@@ -54,7 +54,7 @@
     </template>
     <template v-else>
       <p class="subheading pink--text font-weight-medium">
-        User doesn't exist
+        Forbidden
       </p>
     </template>
   </v-container>
