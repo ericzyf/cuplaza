@@ -31,9 +31,6 @@
 
       <!-- user state -->
       <template v-if="!loginState">
-        <v-btn icon>
-          <v-icon>account_circle</v-icon>
-        </v-btn>
         <v-btn outline color="success" to="/login">Login</v-btn>
         <v-btn outline color="primary" to="/signup">Sign Up</v-btn>
       </template>
