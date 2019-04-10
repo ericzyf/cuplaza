@@ -7,6 +7,7 @@ import Admin from './views/Admin.vue'
 import Category from './views/Category.vue'
 import Item from './views/Item.vue'
 import Search from './views/Search.vue'
+import User from './views/User.vue'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/search/:b64',
       name: 'search',
       component: Search
+    },
+    {
+      path: '/user/:uid',
+      name: 'user',
+      component: User
     }
   ]
 })
