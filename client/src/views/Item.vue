@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3">
+  <v-container fluid>
     <template v-if="targetItem">
       <v-layout row wrap>
         <v-flex xs12 md6>
@@ -32,7 +32,7 @@
         </v-flex>
       </v-layout>
     </template>
-  </div>
+  </v-container>
 </template>
 
 <script>

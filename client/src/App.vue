@@ -2,7 +2,7 @@
   <v-app style="background-color: #eee">
     <PrimaryAppBar />
     <v-content>
-      <router-view></router-view>
+      <router-view style="max-width: 90%"></router-view>
     </v-content>
     <Footer />
   </v-app>

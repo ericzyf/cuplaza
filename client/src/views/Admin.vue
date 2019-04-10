@@ -1,5 +1,5 @@
 <template>
-  <div style="border-left: 10px solid #00ff00;">
+  <v-container fluid style="border-left: 10px solid #00ff00;">
     <v-toolbar dense color="indigo" class="white--text">
       <v-icon large class="white--text logo">settings</v-icon>
       <v-toolbar-title>ADMIN PANEL</v-toolbar-title>
@@ -21,7 +21,7 @@
       <UserDelete />
       <v-divider></v-divider>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
