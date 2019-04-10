@@ -3,7 +3,12 @@
     <v-card class="pa-3">
       <div class="no-link-decoration">
         <router-link :to="routeString">
-          <p class="title item-title black--text">{{ item.title }}</p>
+          <p class="title item-title black--text ma-1">{{ item.title }}</p>
+        </router-link>
+        <router-link :to="`/category/${item.category}`">
+          <span class="font-italic pink--text">{{ categoryName }}</span>
+        </router-link>
+        <router-link :to="routeString">
           <v-img
             class="black--text"
             height="120px"
@@ -66,6 +71,17 @@ export default {
   computed: {
     routeString: function() {
       return `/item/${this.item._id}`
+    },
+    categoryName: function() {
+      const catList = [
+        'Beauty & Personal Care',
+        'Books',
+        'Electronics',
+        'Fashion',
+        'Services',
+        'Others'
+      ]
+      return catList[this.item.category]
     }
   },
   async created() {
