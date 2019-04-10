@@ -59,9 +59,11 @@ export default {
       passwordVisible: false,
       confirmPasswordVisible: false,
       confirmPassword: null,
+      users: null,
+      error: '',
       rules: {
         passwdMatch: v => (v === this.json.password) || "Password doesn't match",
-        requiredField: v => (v !== null && v.length > 0) || "Required",
+        requiredField: v => (v !== null && v.length > 0) || "Required"
       },
       json: {
         email: null,
@@ -75,19 +77,41 @@ export default {
     stringNotEmpty: function(str) {
       return str !== null && str.length > 0
     },
+    emailNotRegistered: function() {
+      let found = false
+      for (let i = 0; i !== this.users.length; ++i) {
+        if (this.users[i].email === this.json.email) {
+          found = true
+          break
+        }
+      }
+      return !found
+    },
     signupHandler: async function() {
       // proceed only if all the required fields have been filled up
       // and the two passwords match
+      // and the email hasn't been registered
       if (this.stringNotEmpty(this.json.email) &&
           this.stringNotEmpty(this.json.phone) &&
           this.stringNotEmpty(this.json.userName) &&
           this.stringNotEmpty(this.json.password) &&
           this.json.password === this.confirmPassword) {
-        await UserService.postUser(this.json)
-        alert('Your account has been created.')
+        if (this.emailNotRegistered()) {
+          await UserService.postUser(this.json)
+          alert('Your account has been created.')
+        } else {
+          alert('This email has already been registered.')
+        }
       } else {
         alert('Sorry, please check your form again.')
       }
+    }
+  },
+  async created() {
+    try {
+      this.users = await UserService.getUser()
+    } catch(err) {
+      this.error = err.message
     }
   }
 }
