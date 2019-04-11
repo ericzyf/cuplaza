@@ -40,7 +40,7 @@
                     {{ targetItem.price }}&nbsp;{{ targetItem.currency }}
                   </span>
                   <template v-if="!proceeding">
-                    <v-btn color="teal white--text" @click="proceeding = true">
+                    <v-btn color="teal white--text" @click="confirmHandler()">
                       <v-icon left>add_shopping_cart</v-icon>
                       Confirm
                     </v-btn>
@@ -70,6 +70,7 @@
 <script>
 import ItemService from '@/api/ItemService'
 import UserService from '@/api/UserService'
+import OrderService from '@/api/OrderService'
 
 export default {
   data: function() {
@@ -79,7 +80,12 @@ export default {
       users: null,
       seller: null,
       error: '',
-      proceeding: false
+      proceeding: false,
+      json: {
+        sellerId: null,
+        buyerId: null,
+        item: null
+      }
     }
   },
   methods: {
@@ -93,6 +99,15 @@ export default {
         'Others'
       ]
       return catList[id]
+    },
+    confirmHandler: async function() {
+      this.proceeding = true
+      this.json.sellerId = this.targetItem._id
+      this.json.buyerId = this.$store.state.curtUser_uid
+      this.json.item = this.targetItem
+      await OrderService.postOrder(this.json)
+      alert('Order successfully.')
+      this.$router.push({ path: '/' })
     }
   },
   async created() {
