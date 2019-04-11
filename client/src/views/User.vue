@@ -63,8 +63,25 @@
         <v-divider></v-divider>
         <v-layout column>
           <v-flex v-for="item in selling" :key="item._id" class="blue lighten-4">
-            <span class="blue-grey--text">{{ item.timeStamp }}</span>
-            <p class="deep-orange--text ma-0 font-weight-bold">{{ item.title }}</p>
+            <v-layout row nowrap justify-between>
+              <v-flex>
+                <span class="blue-grey--text">{{ item.timeStamp }}</span>
+                <p class="deep-orange--text ma-0 font-weight-bold">{{ item.title }}</p>
+              </v-flex>
+              <v-flex shrink>
+                <v-tooltip right>
+                  <template v-slot:activator="{ on }">
+                    <v-btn fab small
+                      color="pink" class="white--text"
+                      @click="cancelHandler(item._id)" v-on="on"
+                    >
+                      <v-icon>clear</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Cancel Listing</span>
+                </v-tooltip>
+              </v-flex>
+            </v-layout>
             <v-divider></v-divider>
           </v-flex>
         </v-layout>
@@ -155,6 +172,18 @@ export default {
         }
       }
       return ret
+    },
+    cancelHandler: async function(id) {
+      await ItemService.deleteItem(id)
+      alert('Cancel listing successfully.')
+      // refresh data
+      this.selling = []
+      this.items = await ItemService.getItem()
+      for (let i = 0; i !== this.items.length; ++i) {
+        if (this.items[i].uid === this.$route.params.uid) {
+          this.selling.push(this.items[i])
+        }
+      }
     }
   },
   async created() {
