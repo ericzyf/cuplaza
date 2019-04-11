@@ -107,6 +107,7 @@ export default {
       this.json.item = this.targetItem
       await OrderService.postOrder(this.json)
       alert('Order successfully.')
+      await ItemService.deleteItem(this.json.item._id)
       this.$router.push({ path: '/' })
     }
   },
