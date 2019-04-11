@@ -102,7 +102,7 @@ export default {
     },
     confirmHandler: async function() {
       this.proceeding = true
-      this.json.sellerId = this.targetItem._id
+      this.json.sellerId = this.targetItem.uid
       this.json.buyerId = this.$store.state.curtUser_uid
       this.json.item = this.targetItem
       await OrderService.postOrder(this.json)
