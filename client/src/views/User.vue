@@ -62,12 +62,9 @@
         </p>
         <v-divider></v-divider>
         <v-layout column>
-          <v-flex v-for="item in bought" :key="item._id" class="blue lighten-4">
+          <v-flex v-for="item in selling" :key="item._id" class="blue lighten-4">
             <span class="blue-grey--text">{{ item.timeStamp }}</span>
-            <p class="deep-orange--text ma-0 font-weight-bold">{{ item.itemInfo.title }}</p>
-            <span class="indigo--text pa-1">{{ item.sellerInfo.userName }}</span>
-            <span class="indigo--text pa-1">{{ item.sellerInfo.email }}</span>
-            <span class="indigo--text pa-1">{{ item.sellerInfo.phone }}</span>
+            <p class="deep-orange--text ma-0 font-weight-bold">{{ item.title }}</p>
             <v-divider></v-divider>
           </v-flex>
         </v-layout>
@@ -133,6 +130,7 @@
 <script>
 import UserService from '@/api/UserService'
 import OrderService from '@/api/OrderService'
+import ItemService from '@/api/ItemService'
 
 export default {
   data: function() {
@@ -142,7 +140,9 @@ export default {
       error: '',
       orders: [],
       sold: [],
-      bought: []
+      bought: [],
+      items: [],
+      selling: []
     }
   },
   methods: {
@@ -182,6 +182,13 @@ export default {
             sellerInfo: this.getUser(this.orders[i].sellerId),
             timeStamp: this.orders[i].timeStamp
           })
+        }
+      }
+      // get current selling items
+      this.items = await ItemService.getItem()
+      for (let i = 0; i !== this.items.length; ++i) {
+        if (this.items[i].uid === this.$route.params.uid) {
+          this.selling.push(this.items[i])
         }
       }
     } catch(err) {
