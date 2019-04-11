@@ -103,11 +103,11 @@ import UserService from '@/api/UserService'
 export default {
   data: function() {
     return {
-      items: null,
-      targetItem: null,
+      items: [],
+      targetItem: {},
       error: '',
-      users: null,
-      seller: null
+      users: [],
+      seller: {}
     }
   },
   methods: {

@@ -6,13 +6,14 @@
         {{ "'" + decodeKeyword($route.params.b64) + "'" }}
       </p>
       <p class="subheading orange--text font-weight-medium">
-        Found {{ this.results.length }} item(s)
+        Found {{ results.length }} item(s)
       </p>
       <v-layout row wrap>
         <ItemCard
-          v-for="item in results"
-          :key="item._id"
-          :item="item"
+          v-for="v in ItemCardProps"
+          :key="v.item._id"
+          :item="v.item"
+          :seller="v.seller"
         />
       </v-layout>
     </template>
@@ -31,6 +32,7 @@
 <script>
 import ItemCard from '@/components/ItemCard'
 import SearchService from '@/api/SearchService'
+import UserService from '@/api/UserService'
 
 const base64url = require('base64url')
 
@@ -40,19 +42,40 @@ export default {
   },
   data: function() {
     return {
-      results: null,
-      error: null
+      results: [],
+      users: [],
+      error: '',
+      ItemCardProps: []
     }
   },
   methods: {
     decodeKeyword: function(b64) {
       return base64url.decode(b64)
+    },
+    generateItemCardProps(items, users) {
+      let props = []
+      for (let i = 0; i !== items.length; ++i) {
+        let sellerInfo = null
+        for (let j = 0; j !== users.length; ++j) {
+          if (users[j]._id === items[i].uid) {
+            sellerInfo = users[j]
+            break
+          }
+        }
+        props.push({
+          item: items[i],
+          seller: sellerInfo
+        })
+      }
+      return props
     }
   },
-  async created() {
+  async beforeCreate() {
     try {
       this.results = await SearchService.searchItem(this.$route.params.b64)
+      this.users = await UserService.getUser()
       this.results.reverse()
+      this.ItemCardProps = this.generateItemCardProps(this.results, this.users)
     } catch(err) {
       this.error = err.message
     }

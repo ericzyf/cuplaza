@@ -57,17 +57,8 @@
 </template>
 
 <script>
-import UserService from '@/api/UserService'
-
 export default {
-  props: ['item'],
-  data: function() {
-    return {
-      users: null,
-      error: '',
-      seller: null
-    }
-  },
+  props: ['item', 'seller'],
   methods: {
     orderHandler: function() {
       this.$router.push({ path: `/order/${this.item._id}` })
@@ -87,18 +78,6 @@ export default {
         'Others'
       ]
       return catList[this.item.category]
-    }
-  },
-  async created() {
-    try {
-      this.users = await UserService.getUser()
-      for (let i = 0; i !== this.users.length; ++i) {
-        if (this.users[i]._id === this.item.uid) {
-          this.seller = this.users[i]
-        }
-      }
-    } catch(err) {
-      this.error = err.message
     }
   }
 }

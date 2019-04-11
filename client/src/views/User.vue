@@ -118,10 +118,10 @@ import OrderService from '@/api/OrderService'
 export default {
   data: function() {
     return {
-      users: null,
-      targetUser: null,
+      users: [],
+      targetUser: {},
       error: '',
-      orders: null,
+      orders: [],
       sold: [],
       bought: []
     }
