@@ -2,7 +2,10 @@
   <v-container fluid>
     <template v-if="$route.params.uid === $store.state.curtUser_uid">
       <v-card max-width="1000px" style="margin: 0 auto; border-radius: 15px; padding: 15px">
-        <span class="headline black--text">Account Details</span>
+        <p class="indigo--text headline font-weight-medium pl-3">
+          <v-icon color="indigo" class="pr-2">info</v-icon>
+          Account Details
+        </p>
         <v-divider></v-divider>
         <v-layout column>
           <v-flex>

@@ -2,6 +2,11 @@
   <v-container fluid>
     <template v-if="targetItem">
       <v-card class="pa-2">
+        <p class="indigo--text headline font-weight-medium pl-3">
+          <v-icon color="indigo" class="pr-2">info</v-icon>
+          Item Details
+        </p>
+        <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12 md6>
             <v-carousel style="max-width: 90%; margin: 0 auto;">
