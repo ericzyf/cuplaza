@@ -21,3 +21,9 @@ npm run build
 ```
 sudo serve -s dist -l 80
 ```
+
+*Run front-end unit tests*
+```
+cd client
+npm run test:unit
+```
