@@ -61,7 +61,7 @@
     </template>
     <template v-else>
       <p class="subheading pink--text font-weight-medium">
-        Please log in before ordering items.
+        Please log in before ordering items
       </p>
     </template>
   </v-container>

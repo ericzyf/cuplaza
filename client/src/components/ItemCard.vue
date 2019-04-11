@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6 md4 lg3>
-    <v-card class="pa-3">
+    <v-card class="pa-3" style="border-radius: 25px; padding: 25px;">
       <div class="no-link-decoration">
         <router-link :to="routeString">
           <p class="title item-title black--text ma-1">{{ item.title }}</p>

@@ -1,16 +1,28 @@
 <template>
   <v-container fluid grid-list-lg>
-    <p class="headline blue-grey--text font-weight-medium">
-      {{ categoryName($route.params.id) }}
-    </p>
-    <v-layout row wrap>
-      <ItemCard
-        v-for="v in ItemCardProps"
-        :key="v.item._id"
-        :item="v.item"
-        :seller="v.seller"
-      />
-    </v-layout>
+    <template v-if="filteredItems.length > 0">
+      <p class="headline blue-grey--text font-weight-medium">
+        {{ categoryName($route.params.id) }}
+      </p>
+      <v-layout row wrap>
+        <ItemCard
+          v-for="v in ItemCardProps"
+          :key="v.item._id"
+          :item="v.item"
+          :seller="v.seller"
+        />
+      </v-layout>
+    </template>
+    <template v-else>
+      <p class="headline blue-grey--text font-weight-medium">
+        {{ categoryName($route.params.id) }}
+      </p>
+      <v-layout row wrap>
+        <p class="subheading pink--text font-weight-medium">
+          No items in this category
+        </p>
+      </v-layout>
+    </template>
   </v-container>
 </template>
 
