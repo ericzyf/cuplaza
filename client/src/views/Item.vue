@@ -72,12 +72,23 @@
                         {{ targetItem.price }}&nbsp;{{ targetItem.currency }}
                       </span>
                     </v-flex>
-                    <v-flex shrink>
-                      <v-btn color="deep-orange white--text" large @click="orderHandler()">
-                        <v-icon left>shopping_cart</v-icon>
-                        Order
-                      </v-btn>
-                    </v-flex>
+                    <!-- users can only order the items posted by others -->
+                    <template v-if="seller._id !== $store.state.curtUser_uid">
+                      <v-flex shrink>
+                        <v-btn color="deep-orange white--text" large @click="orderHandler()">
+                          <v-icon left>shopping_cart</v-icon>
+                          Order
+                        </v-btn>
+                      </v-flex>
+                    </template>
+                    <template v-else>
+                      <v-flex shrink>
+                        <v-btn large disabled>
+                          <v-icon left>shopping_cart</v-icon>
+                          Order
+                        </v-btn>
+                      </v-flex>
+                    </template>
                   </v-layout>
                 </v-flex>
               </v-layout>

@@ -47,10 +47,19 @@
       <v-card-actions>
         <p class="orange--text title">{{ item.price }} {{ item.currency }}</p>
         <v-spacer></v-spacer>
-        <v-btn color="deep-orange white--text" @click="orderHandler()">
-          <v-icon left>shopping_cart</v-icon>
-          Order
-        </v-btn>
+        <!-- users can only order the items posted by others -->
+        <template v-if="seller._id !== $store.state.curtUser_uid">
+          <v-btn color="deep-orange white--text" @click="orderHandler()">
+            <v-icon left>shopping_cart</v-icon>
+            Order
+          </v-btn>
+        </template>
+        <template v-else>
+          <v-btn disabled>
+            <v-icon left>shopping_cart</v-icon>
+            Order
+          </v-btn>
+        </template>
       </v-card-actions>
     </v-card>
   </v-flex>
