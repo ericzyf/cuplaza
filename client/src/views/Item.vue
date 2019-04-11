@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <template v-if="targetItem">
-      <v-card class="pa-2">
+      <v-card max-width="1200px" class="pa-2" style="margin: 0 auto">
         <p class="indigo--text headline font-weight-medium pl-3">
           <v-icon color="indigo" class="pr-2">info</v-icon>
           Item Details
