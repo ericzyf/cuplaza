@@ -47,7 +47,7 @@
       <v-card-actions>
         <p class="orange--text title">{{ item.price }} {{ item.currency }}</p>
         <v-spacer></v-spacer>
-        <v-btn color="deep-orange white--text">
+        <v-btn color="deep-orange white--text" @click="orderHandler()">
           <v-icon left>shopping_cart</v-icon>
           Order
         </v-btn>
@@ -66,6 +66,11 @@ export default {
       users: null,
       error: '',
       seller: null
+    }
+  },
+  methods: {
+    orderHandler: function() {
+      this.$router.push({ path: `/order/${this.item._id}` })
     }
   },
   computed: {

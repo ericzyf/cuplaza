@@ -9,6 +9,7 @@ import Item from './views/Item.vue'
 import Search from './views/Search.vue'
 import User from './views/User.vue'
 import PostItem from './views/PostItem.vue'
+import Order from './views/Order.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/postitem/:uid',
       name: 'postitem',
       component: PostItem
+    },
+    {
+      path: '/order/:id',
+      name: 'order',
+      component: Order
     }
   ]
 })

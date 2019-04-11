@@ -77,6 +77,23 @@ app.delete('/api/users/:id', async (req, res) => {
   })
   res.status(200).send()
 })
+
+// Order API
+app.get('/api/orders', async (req, res) => {
+  const data = loadCollection('orders')
+  const json = await data.find().toArray()
+  res.send(json)
+})
+
+app.post('/api/orders', async (req, res) => {
+  const data = loadCollection('orders')
+  const json = {
+    ...req.body,
+    timeStamp: new Date().toJSON()
+  }
+  await data.insertOne(json)
+  res.status(201).send()
+})
 //// End of API part
 
 //// Search System

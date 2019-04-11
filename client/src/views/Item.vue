@@ -68,7 +68,7 @@
                       </span>
                     </v-flex>
                     <v-flex shrink>
-                      <v-btn color="deep-orange white--text" large>
+                      <v-btn color="deep-orange white--text" large @click="orderHandler()">
                         <v-icon left>shopping_cart</v-icon>
                         Order
                       </v-btn>
@@ -116,6 +116,9 @@ export default {
         'Others'
       ]
       return catList[id]
+    },
+    orderHandler: function() {
+      this.$router.push({ path: `/order/${this.targetItem._id}` })
     }
   },
   async created() {
