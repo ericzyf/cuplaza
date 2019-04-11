@@ -54,6 +54,25 @@
           <v-divider></v-divider>
         </v-layout>
       </v-card>
+
+      <v-card max-width="1000px" style="margin: 20px auto; border-radius: 15px; padding: 15px;">
+        <p class="green--text headline font-weight-medium pl-3">
+          <v-icon color="green" class="pr-2">store</v-icon>
+          Current Selling Items
+        </p>
+        <v-divider></v-divider>
+        <v-layout column>
+          <v-flex v-for="item in bought" :key="item._id" class="blue lighten-4">
+            <span class="blue-grey--text">{{ item.timeStamp }}</span>
+            <p class="deep-orange--text ma-0 font-weight-bold">{{ item.itemInfo.title }}</p>
+            <span class="indigo--text pa-1">{{ item.sellerInfo.userName }}</span>
+            <span class="indigo--text pa-1">{{ item.sellerInfo.email }}</span>
+            <span class="indigo--text pa-1">{{ item.sellerInfo.phone }}</span>
+            <v-divider></v-divider>
+          </v-flex>
+        </v-layout>
+      </v-card>
+
       <v-card max-width="1000px" style="margin: 20px auto; border-radius: 15px; padding: 15px;">
         <p class="teal--text headline font-weight-medium pl-3">
           <v-icon color="teal" class="pr-2">description</v-icon>
