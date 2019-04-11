@@ -86,6 +86,7 @@ export default {
       try {
         this.results = await SearchService.searchItem(to.params.b64)
         this.results.reverse()
+        this.ItemCardProps = this.generateItemCardProps(this.results, this.users)
       } catch(err) {
         this.error = err.message
       }
