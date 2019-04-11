@@ -70,7 +70,7 @@ export default {
       return props
     }
   },
-  async beforeCreate() {
+  async created() {
     try {
       this.results = await SearchService.searchItem(this.$route.params.b64)
       this.users = await UserService.getUser()
