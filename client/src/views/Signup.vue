@@ -99,6 +99,7 @@ export default {
         if (this.emailNotRegistered()) {
           await UserService.postUser(this.json)
           alert('Your account has been created.')
+          this.$router.push({ path: '/login' })
         } else {
           alert('This email has already been registered.')
         }
