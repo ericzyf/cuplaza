@@ -3,6 +3,10 @@ const axios = require('axios')
 const url = 'http://localhost:8081/api/users/'
 
 class UserService {
+  /**
+   * make http GET request
+   * get all records in 'users' collection
+   */
   static getUser() {
     return new Promise(async (resolve, reject) => {
       try {
@@ -14,10 +18,18 @@ class UserService {
     })
   }
 
+  /**
+   * make http POST request
+   * @param user user info in json
+   */
   static postUser(user) {
     return axios.post(url, user)
   }
 
+  /**
+   * make http DELETE request
+   * @param id id of the user to be deleted
+   */
   static deleteUser(id) {
     return axios.delete(`${url}${id}`)
   }

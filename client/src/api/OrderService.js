@@ -3,6 +3,10 @@ const axios = require('axios')
 const url = 'http://localhost:8081/api/orders/'
 
 class OrderService {
+  /**
+   * make http GET request
+   * get all records in 'orders' collection
+   */
   static getOrder() {
     return new Promise(async (resolve, reject) => {
       try {
@@ -14,6 +18,10 @@ class OrderService {
     })
   }
 
+  /**
+   * make http POST request
+   * @param order order info in json
+   */
   static postOrder(order) {
     return axios.post(url, order)
   }

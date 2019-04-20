@@ -3,6 +3,10 @@ const axios = require('axios')
 const url = 'http://localhost:8081/api/search/'
 
 class SearchService {
+  /**
+   * make http GET request
+   * @param b64 base64url-encoded search keyword
+   */
   static searchItem(b64) {
     return new Promise(async (resolve, reject) => {
       try {
