@@ -1,3 +1,5 @@
+<!-- item page @ /item -->
+
 <template>
   <v-container fluid>
     <template v-if="targetItem">
@@ -133,6 +135,7 @@ export default {
       ]
       return catList[id]
     },
+    // jump to the corresponding order page
     orderHandler: function() {
       this.$router.push({ path: `/order/${this.targetItem._id}` })
     }

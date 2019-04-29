@@ -1,3 +1,5 @@
+<!-- search page @ /search -->
+
 <template>
   <v-container fluid grid-list-lg>
     <template v-if="results.length > 0">
@@ -49,6 +51,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * decode the search keyword which was encoded in base64url
+     * @param b64 base64url encoded search keyword
+     */
     decodeKeyword: function(b64) {
       return base64url.decode(b64)
     },

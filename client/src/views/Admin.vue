@@ -1,3 +1,5 @@
+<!-- admin page @ /admin -->
+
 <template>
   <v-container fluid style="border-left: 10px solid #00ff00;">
     <v-toolbar dense color="indigo" class="white--text">

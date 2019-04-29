@@ -1,3 +1,5 @@
+<!-- login page @ /login -->
+
 <template>
   <v-container fluid>
     <v-card class="center" max-width="500px">
@@ -61,7 +63,9 @@ export default {
       }
       alert(found ? 'Login successfully.' : 'Email or password error.')
       if (found) {
+        // commit 'login' to vuex
         this.$store.commit('login', this.users[i])
+        // jump to homepage
         this.$router.push({ path: '/' })
       }
     }

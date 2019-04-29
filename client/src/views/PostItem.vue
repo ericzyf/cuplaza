@@ -1,3 +1,5 @@
+<!-- postitem page @ /postitem -->
+
 <template>
   <v-container fluid>
     <template v-if="$route.params.uid === $store.state.curtUser_uid">
@@ -100,10 +102,13 @@ export default {
     }
   },
   methods: {
+    // check if the string is empty or not
     stringNotEmpty: function(str) {
       return str !== null && str.length > 0
     },
+    // handle item post
     postHandler: async function() {
+      // if all the information of the item has been filled up
       if (this.json.category !== null &&
           this.stringNotEmpty(this.json.title) &&
           this.stringNotEmpty(this.json.price) &&
@@ -112,6 +117,7 @@ export default {
           this.stringNotEmpty(this.json.description)) {
         await ItemService.postItem(this.json)
         alert('Post successfully.')
+        // jump to homepage
         this.$router.push({ path: '/' })
       } else {
         alert('Please check the form again before submitting.')
@@ -127,6 +133,7 @@ export default {
     }
   },
   computed: {
+    // check login state stored in vuex
     loginState: function() {
       return this.$store.state.curtUser_uid !== null
     }

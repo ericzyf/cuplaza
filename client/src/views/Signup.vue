@@ -1,3 +1,5 @@
+<!-- signup page @ /signup -->
+
 <template>
   <v-container fluid>
     <v-card class="center" max-width="500px">
@@ -77,6 +79,7 @@ export default {
     stringNotEmpty: function(str) {
       return str !== null && str.length > 0
     },
+    // check if the email has already been registered
     emailNotRegistered: function() {
       let found = false
       for (let i = 0; i !== this.users.length; ++i) {

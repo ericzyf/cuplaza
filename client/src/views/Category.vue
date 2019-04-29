@@ -1,3 +1,5 @@
+<!-- category page @ /category -->
+
 <template>
   <v-container fluid grid-list-lg>
     <template v-if="filteredItems.length > 0">
@@ -56,6 +58,7 @@ export default {
       ]
       return catList[id]
     },
+    // return the props needed by ItemCard
     generateItemCardProps(items, users) {
       let props = []
       for (let i = 0; i !== items.length; ++i) {

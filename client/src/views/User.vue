@@ -1,3 +1,5 @@
+<!-- user page @ /user -->
+
 <template>
   <v-container fluid>
     <template v-if="$route.params.uid === $store.state.curtUser_uid">
@@ -163,6 +165,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * get the information of the user with the specified uid
+     * @param uid the id of the user
+     */
     getUser: function(uid) {
       let ret = null
       for (let i = 0; i !== this.users.length; ++i) {

@@ -1,3 +1,5 @@
+<!-- order page @ /order -->
+
 <template>
   <v-container fluid>
     <template v-if="$store.state.curtUser_uid">
@@ -108,6 +110,7 @@ export default {
       await OrderService.postOrder(this.json)
       alert('Order successfully.')
       await ItemService.deleteItem(this.json.item._id)
+      // jump to homepage
       this.$router.push({ path: '/' })
     }
   },
