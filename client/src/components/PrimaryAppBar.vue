@@ -43,6 +43,7 @@
               </span>
             </v-btn>
           </template>
+          <!-- user dropdown menu -->
           <v-list>
             <v-list-tile>
               <span>User:&nbsp;</span>
@@ -95,6 +96,7 @@
                 <v-icon>account_circle</v-icon>
               </v-btn>
             </template>
+            <!-- user dropdown menu -->
             <v-list>
               <v-list-tile>
                 <v-btn outline color="success" to="/login">Login</v-btn>
@@ -114,6 +116,7 @@
                 </span>
               </v-btn>
             </template>
+            <!-- user dropdown menu -->
             <v-list>
               <v-list-tile>
                 <span>User:&nbsp;</span>
@@ -207,6 +210,10 @@ export default {
     }
   },
   computed: {
+    /**
+     * return the base64url encoding of
+     * the search keyword entered by user
+     */
     b64Keyword: function() {
       return base64url(this.searchKeyword)
     },
@@ -218,12 +225,24 @@ export default {
   methods: {
     searchHandler: function() {
       if (!this.searchOpen) {
+        /**
+         * if search bar was closed
+         * open it
+         */
         this.searchOpen = true
       } else if (this.searchKeyword !== null && this.searchKeyword.length > 0) {
+        /**
+         * else if search bar was opened and the search keyword is not empty
+         * jump to the corresponding search result page
+         */
         this.$router.push({ path: `/search/${this.b64Keyword}` })
         this.searchKeyword = ''
         this.searchOpen = false
       } else {
+        /**
+         * else if search bar was opened but the keyword is empty
+         * close it
+         */
         this.searchOpen = false
       }
     },

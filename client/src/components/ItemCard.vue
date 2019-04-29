@@ -69,6 +69,7 @@
 export default {
   props: ['item', 'seller'],
   methods: {
+    // jump to the corresponding order page
     orderHandler: function() {
       this.$router.push({ path: `/order/${this.item._id}` })
     }
@@ -78,6 +79,7 @@ export default {
       return `/item/${this.item._id}`
     },
     categoryName: function() {
+      // list of category names
       const catList = [
         'Beauty & Personal Care',
         'Books',
