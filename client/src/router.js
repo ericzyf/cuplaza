@@ -38,31 +38,37 @@ export default new Router({
       component: Admin
     },
     {
+      // @param id category id
       path: '/category/:id',
       name: 'category',
       component: Category
     },
     {
+      // @param id item id
       path: '/item/:id',
       name: 'item',
       component: Item
     },
     {
+      // @param b64 base64 encoded search keyword
       path: '/search/:b64',
       name: 'search',
       component: Search
     },
     {
+      // @param uid user id
       path: '/user/:uid',
       name: 'user',
       component: User
     },
     {
+      // @param uid seller id
       path: '/postitem/:uid',
       name: 'postitem',
       component: PostItem
     },
     {
+      // @param id item id
       path: '/order/:id',
       name: 'order',
       component: Order
