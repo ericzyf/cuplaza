@@ -1,3 +1,8 @@
+<!--
+  This is the ItemSearch component on Admin page on /admin.
+  It can be used to search items in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">Item Search</p>

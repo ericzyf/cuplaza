@@ -1,3 +1,8 @@
+<!--
+  This is the ItemPost component on Admin page on /admin.
+  It can be used to create a new item in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">Item POST</p>
@@ -28,7 +33,13 @@ export default {
     }
   },
   methods: {
+    /**
+     * post new item
+     * @param item item info in json
+     */
     async adminPostItem(item) {
+      // post item only when all the infomation
+      // has been filled
       if (item.uid !== null &&
           item.category !== null &&
           item.title !== null &&

@@ -1,3 +1,8 @@
+<!--
+  This is the ItemGet component on Admin page on /admin.
+  It can be used to get all the items in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">Item GET</p>

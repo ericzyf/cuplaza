@@ -1,3 +1,8 @@
+<!--
+  This is the ItemDelete component on Admin page on /admin.
+  It can be used to delete items in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">Item DELETE</p>
@@ -16,6 +21,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * delete item
+     * @param id id of the item to be deleted
+     */
     async adminDeleteItem(id) {
       if (id !== null) {
         await ItemService.deleteItem(id)

@@ -1,3 +1,8 @@
+<!--
+  This is the UserDelete component on Admin page on /admin.
+  It can be used to delete a user in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">User DELETE</p>
@@ -16,6 +21,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * delete user
+     * @param id id of the user to be deleted
+     */
     async adminDeleteUser(id) {
       if (id !== null) {
         await UserService.deleteUser(id)

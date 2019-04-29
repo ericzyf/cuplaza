@@ -1,3 +1,8 @@
+<!--
+  This is the UserPost component on Admin page on /admin.
+  It can be used to create a new user in the database.
+-->
+
 <template>
   <div style="padding: 20px">
     <p class="headline black--text">User POST</p>
@@ -24,6 +29,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * create new user
+     * @param user user info in json
+     */
     async adminPostUser(user) {
       await UserService.postUser(user)
       alert('POST\n' + JSON.stringify(user))
