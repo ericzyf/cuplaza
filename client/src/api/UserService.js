@@ -2,6 +2,16 @@ const axios = require('axios')
 
 const url = 'http://localhost:8081/api/users/'
 
+/**
+ * This is the user service api.
+ * -----------------------------
+ * This component handles all the requests related to
+ * the user management system. It can be used to
+ * retrieve the user information in the user info
+ * database, create a new user in the database, as well
+ * as delete a user from the database.
+ */
+
 class UserService {
   /**
    * make http GET request
@@ -20,6 +30,7 @@ class UserService {
 
   /**
    * make http POST request
+   * create a new record in 'users' collection
    * @param user user info in json
    */
   static postUser(user) {
@@ -28,6 +39,7 @@ class UserService {
 
   /**
    * make http DELETE request
+   * delete a record from 'users' collection
    * @param id id of the user to be deleted
    */
   static deleteUser(id) {
